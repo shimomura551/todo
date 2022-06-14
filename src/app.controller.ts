@@ -7,15 +7,12 @@ import {
   Body,
   Param,
 } from '@nestjs/common';
-import { AppService } from './app.service';
 import { TODOService } from './todo.service';
-import { TODO, TODO as TODOModel } from '@prisma/client';
-import { identity } from 'rxjs';
+import { TODO } from '@prisma/client';
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     private readonly TODOService: TODOService,
   ) {}
 
@@ -33,7 +30,7 @@ export class AppController {
   update(
     @Param('id') id: string,
     @Body() data: { title?: string; body: string },
-  ): Promise<TODOModel> {
+  ): Promise<TODO> {
     return this.TODOService.updateTODO({
       where: { id: Number(id) },
       data: data,
@@ -43,7 +40,7 @@ export class AppController {
   @Post('post')
   async createTodo(
     @Body() todoData: { title?: string; body: string },
-  ): Promise<TODOModel> {
+  ): Promise<TODO> {
     return this.TODOService.createTODO(todoData);
   }
 

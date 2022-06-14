@@ -9,19 +9,19 @@ export class TODOService {
   async todo(
     todoWhereUniqueInput: Prisma.TODOWhereUniqueInput,
   ): Promise<TODO | null> {
-    return this.prisma.tODO.findUnique({
+    return this.prisma.TODO.findUnique({
       where: todoWhereUniqueInput,
     });
   }
 
   async findTODO(id: number): Promise<TODO | null> {
-    return this.prisma.tODO.findUnique({
+    return this.prisma.TODO.findUnique({
       where: { id },
     });
   }
 
   async allTODO(): Promise<TODO[]> {
-    return this.prisma.tODO.findMany();
+    return this.prisma.TODO.findMany();
   }
 
   async updateTODO(params: {
@@ -29,20 +29,20 @@ export class TODOService {
     where: Prisma.TODOWhereUniqueInput;
   }): Promise<TODO> {
     const { data, where } = params;
-    return this.prisma.tODO.update({
+    return this.prisma.TODO.update({
       data,
       where,
     });
   }
 
   async createTODO(data: Prisma.TODOCreateInput): Promise<TODO> {
-    return this.prisma.tODO.create({
+    return this.prisma.TODO.create({
       data,
     });
   }
 
   async deleteTODO(where: Prisma.TODOWhereUniqueInput): Promise<TODO> {
-    return this.prisma.tODO.delete({
+    return this.prisma.TODO.delete({
       where,
     });
   }
